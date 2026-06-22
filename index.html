@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unstuck Playbook — Execute and Win</title>
+<meta name="description" content="4 frameworks for wealth, mindset, health and AI. Built to move you forward today. Free from Execute and Win.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:    #14130F;
+    --bone:   #F2EEE6;
+    --orange: #FF4B26;
+    --muted:  #8A8880;
+    --faint:  #1E1D19;
+    --card:   #1A1916;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(242,238,230,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,238,230,0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 32px 0 0;
+    text-align: center;
+  }
+
+  .brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .brand span { color: var(--orange); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 56px 0 48px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding: 6px 16px;
+    border: 1px solid rgba(255,75,38,0.3);
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(40px, 8vw, 64px);
+    line-height: 1.0;
+    letter-spacing: -1.5px;
+    color: var(--bone);
+    margin-bottom: 12px;
+  }
+
+  h1 .accent { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(242,238,230,0.65);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 20px auto 0;
+    font-weight: 400;
+  }
+
+  /* ── SOCIAL PROOF BAR ── */
+  .proof-bar {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+  }
+
+  .proof-item {
+    text-align: center;
+  }
+
+  .proof-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 26px;
+    color: var(--orange);
+    display: block;
+  }
+
+  .proof-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .proof-divider {
+    width: 1px;
+    background: rgba(242,238,230,0.1);
+    align-self: stretch;
+  }
+
+  /* ── OPT-IN FORM ── */
+  .form-section {
+    background: var(--card);
+    border: 1px solid rgba(242,238,230,0.08);
+    border-radius: 16px;
+    padding: 40px 36px;
+    margin: 0 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--orange);
+    box-shadow: 0 0 20px rgba(255,75,38,0.5);
+  }
+
+  .form-headline {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    color: var(--bone);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .form-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(242,238,230,0.05);
+    border: 1px solid rgba(242,238,230,0.12);
+    border-radius: 8px;
+    color: var(--bone);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder {
+    color: var(--muted);
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    border-color: var(--orange);
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--orange);
+    color: var(--bone);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    box-shadow: 0 0 30px rgba(255,75,38,0.25);
+  }
+
+  .btn-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 14px;
+    opacity: 0.7;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .frameworks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .framework-card {
+    background: var(--card);
+    border: 1px solid rgba(242,238,230,0.07);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+
+  .framework-card:hover {
+    border-color: rgba(255,75,38,0.25);
+  }
+
+  .fw-number {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+    color: rgba(255,75,38,0.2);
+    line-height: 1;
+    min-width: 40px;
+  }
+
+  .fw-content {}
+
+  .fw-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .fw-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    color: var(--bone);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+
+  .fw-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PROMISE SECTION ── */
+  .promise {
+    text-align: center;
+    padding: 48px 0;
+    border-top: 1px solid rgba(242,238,230,0.07);
+    border-bottom: 1px solid rgba(242,238,230,0.07);
+    margin-bottom: 56px;
+  }
+
+  .promise-quote {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(22px, 4vw, 32px);
+    color: var(--bone);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .promise-quote .accent { color: var(--orange); }
+
+  .promise-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-section {
+    margin-bottom: 56px;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 2px;
+    background: rgba(242,238,230,0.08);
+    border-radius: 2px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .progress-fill {
+    width: 45%;
+    height: 100%;
+    background: var(--orange);
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(255,75,38,0.6);
+    position: relative;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,75,38,0.8);
+  }
+
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 0 48px;
+    border-top: 1px solid rgba(242,238,230,0.06);
+  }
+
+  .footer-brand {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    color: var(--bone);
+    margin-bottom: 8px;
+  }
+
+  .footer-brand span { color: var(--orange); }
+
+  .footer-handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    opacity: 0.6;
+  }
+
+  .footer-links a:hover { opacity: 1; }
+
+  /* ── KIT FORM EMBED PLACEHOLDER ── */
+  .kit-embed {
+    /* Replace this div with your Kit embed code */
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .form-section { padding: 28px 20px; }
+    .proof-divider { display: none; }
+    .framework-card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">Execute <span>&</span> Win</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Free Resource — Instant Access</div>
+    <h1>GET <span class="accent">UNSTUCK.</span><br>START WINNING.</h1>
+    <p class="hero-sub">
+      4 frameworks for wealth, mindset, health & AI — built to move you forward today. Not someday. Today.
+    </p>
+  </section>
+
+  <!-- PROOF BAR -->
+  <div class="proof-bar">
+    <div class="proof-item">
+      <span class="proof-num">4</span>
+      <span class="proof-label">Frameworks</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <span class="proof-num">10 min</span>
+      <span class="proof-label">To read</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <span class="proof-num">100%</span>
+      <span class="proof-label">Actionable</span>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <span class="proof-num">Free</span>
+      <span class="proof-label">Always</span>
+    </div>
+  </div>
+
+  <!-- OPT-IN FORM -->
+  <div class="form-section">
+    <div class="form-headline">Get The Unstuck Playbook — Free</div>
+    <div class="form-sub">Enter your name and email. The playbook hits your inbox instantly.</div>
+
+    <!-- 
+      REPLACE EVERYTHING BELOW WITH YOUR KIT EMBED CODE
+      Kit will give you a form embed snippet — paste it here
+      and delete the placeholder form below
+    -->
+    <div class="kit-embed">
+      <div class="form-group">
+        <input type="text" placeholder="First name" />
+        <input type="email" placeholder="Email address" />
+      </div>
+      <button class="btn-primary">Send Me The Unstuck Playbook →</button>
+    </div>
+
+    <p class="privacy-note">No spam. No fluff. Unsubscribe anytime. Your email is yours.</p>
+  </div>
+
+  <!-- WHAT YOU GET -->
+  <div class="section-label">What's inside the playbook</div>
+
+  <div class="frameworks">
+
+    <div class="framework-card">
+      <div class="fw-number">01</div>
+      <div class="fw-content">
+        <div class="fw-tag">Wealth</div>
+        <div class="fw-title">The First Asset Framework</div>
+        <div class="fw-desc">The 3-question filter that tells you exactly whether to pursue or skip any income-producing asset — before you waste time or money finding out the hard way.</div>
+      </div>
+    </div>
+
+    <div class="framework-card">
+      <div class="fw-number">02</div>
+      <div class="fw-content">
+        <div class="fw-tag">Mindset</div>
+        <div class="fw-title">The Execution Unlock</div>
+        <div class="fw-desc">The 3-question system that kills procrastination before it starts. You already know what to do. This is what makes you actually do it.</div>
+      </div>
+    </div>
+
+    <div class="framework-card">
+      <div class="fw-number">03</div>
+      <div class="fw-content">
+        <div class="fw-tag">Health</div>
+        <div class="fw-title">The Minimum Effective Dose</div>
+        <div class="fw-desc">The non-negotiable daily system for staying consistent when motivation disappears. Consistency beats optimization every time — here's the system that makes consistency automatic.</div>
+      </div>
+    </div>
+
+    <div class="framework-card">
+      <div class="fw-number">04</div>
+      <div class="fw-content">
+        <div class="fw-tag">AI & Automation</div>
+        <div class="fw-title">The 10-Minute AI Leverage Stack</div>
+        <div class="fw-desc">The exact 3-tool setup that replaces 2–3 hours of daily work. You don't need to be technical. You need to decide you're not going to be left behind.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROMISE -->
+  <div class="promise">
+    <div class="promise-quote">
+      "Most people have everything<br>they need to <span class="accent">win.</span>"
+    </div>
+    <p class="promise-sub">
+      They just don't have the right frameworks and someone in their corner telling them the truth. That changes here. Every resource from Execute and Win is built to move you forward — not to impress you, not to sell you something hollow, but to get you unstuck and winning.
+    </p>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-section">
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+    <div class="progress-labels">
+      <span>Your progress starts here</span>
+      <span>Execute &amp; Win · 2026</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Execute <span>&</span> Win</div>
+    <div class="footer-handle">@NeedThis2Win on X</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Unsubscribe</a>
+      <a href="https://x.com/NeedThis2Win" target="_blank">Follow on X</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
